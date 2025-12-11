@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자기소개 포트폴리오</title>
+    <style>
+        /* [공통 스타일] - 모바일 기준 (Mobile First) */
+        :root {
+            --primary-color: #3b82f6;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 네비게이션 */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: none; /* 모바일에서는 숨김 */
+            flex-direction: column;
+            width: 100%;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            background: var(--white);
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-links.active {
+            display: flex; /* 햄버거 버튼 클릭 시 보임 */
+        }
+
+        .nav-links li {
+            list-style: none;
+            padding: 1rem 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: bold;
+        }
+
+        .hamburger {
+            display: block;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* 섹션 공통 */
+        section {
+            padding: 60px 0;
+            background: var(--white);
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+        }
+
+        /* 자기소개 (Hero) */
+        .hero {
+            text-align: center;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #ddd; /* 이미지 대신 배경색 */
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 프로젝트 그리드 (반응형의 핵심) */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* 모바일: 1열 */
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .project-card {
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 8px;
+            background: #fff;
+        }
+
+        /* --- [태블릿 버전: 768px 이상] --- */
+        @media (min-width: 768px) {
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr); /* 태블릿: 2열 */
+            }
+
+            .hero {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: left;
+                gap: 40px;
+            }
+            
+            .profile-img {
+                margin: 0; /* 중앙 정렬 해제 */
+            }
+        }
+
+        /* --- [데스크톱 버전: 1024px 이상] --- */
+        @media (min-width: 1024px) {
+            .hamburger {
+                display: none; /* 데스크톱에선 햄버거 숨김 */
+            }
+
+            .nav-links {
+                display: flex; /* 항상 보임 */
+                flex-direction: row;
+                position: static;
+                width: auto;
+                box-shadow: none;
+                gap: 30px;
+            }
+
+            .nav-links li {
+                padding: 0;
+            }
+
+            .project-grid {
+                grid-template-columns: repeat(3, 1fr); /* 데스크톱: 3열 */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">MyPortfolio</div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section id="about" class="hero">
+            <div class="profile-img">사진 영역</div>
+            <div class="hero-text">
+                <h1>안녕하세요,<br>웹 개발자 홍길동입니다.</h1>
+                <p>사용자 경험을 중요하게 생각하며,<br>반응형 웹 개발에 관심이 많습니다.</p>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <div style="text-align: center;">
+                <span>HTML5</span> / <span>CSS3</span> / <span>JavaScript</span> / <span>React</span>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>프로젝트 A</h3>
+                    <p>설명: 모바일에서 1열, 태블릿 2열, PC 3열로 보입니다.</p>
+                </div>
+                <div class="project-card">
+                    <h3>프로젝트 B</h3>
+                    <p>반응형 레이아웃 테스트 카드입니다.</p>
+                </div>
+                <div class="project-card">
+                    <h3>프로젝트 C</h3>
+                    <p>CSS Grid를 활용한 배치입니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" style="text-align: center;">
+            <h2>Contact Me</h2>
+            <p>Email: email@example.com</p>
+            <p>GitHub: github.com/username</p>
+        </section>
+    </div>
+
+    <script>
+        // 모바일 메뉴 토글 기능
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+
+</body>
+</html>
